@@ -1,6 +1,3 @@
-Python 3.4.1 (v3.4.1:c0e311e010fc, May 18 2014, 10:45:13) [MSC v.1600 64 bit (AMD64)] on win32
-Type "copyright", "credits" or "license()" for more information.
->>> 
 s = input().split( )
 s1 = []
 s2 = []
@@ -22,7 +19,15 @@ s2.reverse()
 if len(s) % 2 == 1:
     a = s1.pop()
     
-s3 = []
+s3 =[]
 for i in range(len(s2)):
     s3.append(s1[i])
     s3.append(s2[i])
+
+if len(s) % 2 == 1:
+    s3.append(a)
+    
+#print(s3)    
+
+for i in range(len(s3)):
+    print(s3[i],'' , end = '')
