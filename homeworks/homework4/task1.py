@@ -14,20 +14,17 @@ def combinations(n, k):
 
 
 with open("dict.txt") as f:
+    all_words = f.read().split("\n")
     noun = 0
     adj = 0
     verb = 0
-    for word in f:
-        if word.endswith("ka\n"):
+    for word in all_words:
+        if word.endswith("ka"):
             noun += 1
-        elif word.endswith("yo\n"):
+        elif word.endswith("yo"):
             adj += 1
         else:
             verb += 1
-
-#    print("noun", noun)
-#    print("adj", adj)
-#    print("verb," verb)
 
     var_of_adj = 0
     if adj > 7:
