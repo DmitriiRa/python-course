@@ -3,16 +3,17 @@ import requests
 import timeit
 import re
 
-url = "https://en.wikipedia.org/wiki/Coregonus_lavaretus"
-regex = "'/wiki/[\w\(\)]+'"
+
+regex = "'/wiki/[\w\(\)-]+'"
 visited_links = ["https://en.wikipedia.org/wiki/Main_Page"]
+way = []
 
 
 def add_link(links, link):
     if (link in links) == False:
         if (link in visited_links) == False:
             links.append(link)
-    return links    
+    return links
 
 
 def links_from_page(url):
@@ -34,45 +35,45 @@ def links_from_page(url):
 def first_click(start, finish):
     links = links_from_page(start)
     if (finish in links) == True:
-        return(start, finish)
-    else:
-        print("not in the first click")
+        return(1)
     add_link(visited_links, start)
-    return(start, second_click(links, finish), finish)
+    second_click(links, finish)
+    return()
 
 
 def second_click(links1, finish):
     links2 = {}
     for link in links1:
-        print("second click")
         l = links_from_page(link)
         add_link(visited_links, link)
         if finish in l:
-            return(link)
+            way.append(link)
+            return(1)
         else:
             links2[link] = l
-    print("not in the second click")
-    return(third_click(links2, finish))
+    third_click(links2, finish)
+    return()
 
 
 def third_click(links2, finish):
     for element in links2.keys():
-        print("##########################")
-        print(element)
         for link in links2[element]:
             print("third click")
             l = links_from_page(link)
             add_link(visited_links, link)
             if finish in l:
-                return(element, link)
-            
-    print("not in the third click")
+                way.append(elemet)
+                way.append(link)
+                return()
+    print("Sorry, man(((")
     return()
-    
 
-#links_from_page("https://en.wikipedia.org/wiki/Coregonus_lavaretus")
-start = "https://en.wikipedia.org/wiki/Straton_tube"
-finish = "https://en.wikipedia.org/wiki/Waveform_monitor"
-#for i in first_click(start, finish):
-#    print(i)
-print(first_click(start, finish))
+
+start = "https://en.wikipedia.org/wiki/Gone_Maggie_Gone"
+finish = "https://en.wikipedia.org/wiki/Theia_(planet)"
+way.append(start)
+first_click(start, finish)
+way.append(finish)
+
+for article in way:
+    print(article)
